@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/sidebar.css" />
+  <link rel="stylesheet" href="./assets/css/ProgressBar.css" />
+  <link rel="stylesheet" href="./assets/css/ex1.css" />
+  
+  
+
+  <!-- Scripts -->
+  <script src="./assets/js/sidebar.js" defer></script>
+
+  
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Contenedor del botón de retroceso y sidebar (cargado dinámicamente) -->
+  <div id="sidebarContainer"></div>
+
+  <!-- Reproductor de audio (cargado dinámicamente) -->
+  <div id="audioContainer"></div>
+
+  <!-- Reproductor de audio personalizado -->
+
+  <div id="audioContainer"></div>
+
+
+  <!-- Logo inferior -->
+  <div class="logo-container">
+    <img src="../assets/images/logo_color.png" alt="Logo AngloAmerican" class="logo" />
+  </div>
+
+  <!-- Título principal -->
+  <header>
+    <h1 class="titulo-epp">
+      <span class="gradient-text2">titulo</span>
+    </h1>
+  </header>
+
+  <!-- Carrusel de contenido -->
+ 
+  <main class="grid">
+    Contenido
+  </main>
+
+
+  <!-- Botón de continuar -->
+  <button class="start-button" onclick="goToNextPage()">
+    Continuar <span class="arrow">❯</span>
+  </button>
+
+  <!-- Scripts -->
+  <script src="./assets/js/SCORM.js"></script>
+  <script src="./assets/js/M1_pagina2.js" defer></script>
+  <script>
+    // Funciones de navegación
+    function goHome() {
+      window.location.href = 'ex.html';
+    }
+    function backPage() {
+      window.location.href = 'ex.html';
+    }
+    function goToNextPage() {
+      window.location.href = 'ex2.html';
+    }
+
+    // SCORM: iniciar y cargar progreso
+    ScormManager.init();
+    ScormManager.guardarProgreso("ex1.html");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const progreso = ScormManager.cargarProgreso();
+      const porcentaje = progreso.score ? parseInt(progreso.score) : 0;
+      document.getElementById("progreso-barra").style.width = porcentaje + "%";
+      document.getElementById("progreso-texto").textContent = porcentaje + "%";
+    });
+  </script>
+  <script>
+    // Sidebar
+    fetch('./assets/componentes/sidebar.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('sidebarContainer').innerHTML = html;
+      });
+
+    // Reproductor de audio
+    fetch('./assets/componentes/audioPlayer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('audioContainer').innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>

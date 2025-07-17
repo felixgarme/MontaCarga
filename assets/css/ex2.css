@@ -1,0 +1,161 @@
+:root {
+  --azul-oscuro: #1b2a49;
+  --azul-claro: #e8f1fc;
+  --primario: #0077c8;
+  --secundario: #00b0ff;
+  --texto: #2e3a59;
+  --blanco: #ffffff;
+  --sombra: rgba(0, 0, 0, 0.1);
+}
+
+.inspeccion-nivel {
+  background: var(--blanco);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px var(--sombra);
+  margin: 2rem auto;
+  max-width: 960px;
+  transition: transform 0.3s ease;
+}
+
+.inspeccion-nivel:hover {
+  transform: scale(1.01);
+}
+
+.inspeccion-titulo {
+  font-size: 2rem;
+  color: var(--primario);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  border-left: 5px solid var(--secundario);
+  padding-left: 1rem;
+}
+
+.inspeccion-check {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.05rem;
+  color: var(--texto);
+  background: var(--azul-claro);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  gap: 0.75rem;
+  box-shadow: 0 2px 10px var(--sombra);
+  line-height: 1.5;
+}
+
+.inspeccion-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.inspeccion-imagen {
+  width: 28% !important;
+  margin-left: 15%;
+  margin-top: 40px;
+  border-radius: 0px;
+
+  transition: transform 0.3s ease;
+}
+
+.inspeccion-imagen:hover {
+  transform: scale(1.02);
+}
+
+.inspeccion-lista p {
+  background: #e8f1fc;
+  color: #5c5c5c;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  font-size: 1.0rem;
+  line-height: 0.3;
+  box-shadow: 0 3px 12px var(--sombra);
+  transition: background 0.3s ease;
+}
+
+.inspeccion-lista:hover {
+  background: var(--secundario);
+}
+
+.inspeccion-lista p {
+  margin: 1px;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+  .inspeccion-contenido {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+
+
+  .inspeccion-lista {
+    width: 40%;
+  }
+}
+
+/* Animación: rotar 90 grados y detenerse */
+@keyframes girar360conPausa {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(90deg); }
+  25%  { transform: rotate(90deg); }
+  45%  { transform: rotate(180deg); }
+  50%  { transform: rotate(180deg); }
+  70%  { transform: rotate(270deg); }
+  75%  { transform: rotate(270deg); }
+  95%  { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.inspeccion-imagen {
+  width: 50%;
+  border-radius: 16px;
+  border: 2px solid var(--azul-claro);
+  box-shadow: 0 4px 12px var(--sombra);
+  animation: girar360conPausa 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Base para todos los pasos */
+.inspeccion-lista .paso {
+  opacity: 0.5;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+/* Animación sincronizada para resaltar cada paso */
+@keyframes resaltarPasos {
+  0%, 24%   { opacity: 1; transform: scale(1.1); }
+  25%, 49%  { opacity: 0.5; transform: scale(1); }
+  50%, 74%  { opacity: 0.5; transform: scale(1); }
+  75%, 100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes resaltarPasoB {
+  0%, 24%   { opacity: 0.5; transform: scale(1); }
+  25%, 49%  { opacity: 1; transform: scale(1.1); }
+  50%, 100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes resaltarPasoC {
+  0%, 49%   { opacity: 0.5; transform: scale(1); }
+  50%, 74%  { opacity: 1; transform: scale(1.1); }
+  75%, 100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes resaltarPasoD {
+  0%, 74%   { opacity: 0.5; transform: scale(1); }
+  75%, 100% { opacity: 1; transform: scale(1.1); }
+}
+
+.paso-a { animation: resaltarPasos 8s infinite ease-in-out; }
+.paso-b { animation: resaltarPasoB 8s infinite ease-in-out; }
+.paso-c { animation: resaltarPasoC 8s infinite ease-in-out; }
+.paso-d { animation: resaltarPasoD 8s infinite ease-in-out; }

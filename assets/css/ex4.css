@@ -1,0 +1,87 @@
+.checklist-inspeccion .newspaper-container {
+  max-width: 920px;
+  margin: 1rem auto;
+  padding: 1.2rem 1.5rem;
+  background: var(--color-blanco);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checklist-inspeccion .header {
+  text-align: center;
+  border-bottom: 1px solid var(--color-azul-oscuro);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.checklist-inspeccion .header h1 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-azul-oscuro);
+  font-weight: 700;
+}
+
+.checklist-inspeccion .header span {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-celeste);
+}
+
+.checklist-inspeccion .columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.checklist-inspeccion .column {
+  flex: 1 1 46%;
+  padding: 0.8rem;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.checklist-inspeccion .section {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px dashed #ccc;
+}
+
+.checklist-inspeccion .section:last-child {
+  border-bottom: none;
+}
+
+.checklist-inspeccion .section h2 {
+  font-size: 1.05rem;
+  color: var(--color-azul);
+  margin-bottom: 0.3rem;
+  padding-left: 0.4rem;
+  border-left: 3px solid var(--color-rojo);
+}
+
+.checklist-inspeccion .section p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  color: #333;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.checklist-inspeccion .section:hover {
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .checklist-inspeccion .columns {
+    flex-direction: column;
+  }
+  .checklist-inspeccion .column {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/sidebar.css" />
+  <link rel="stylesheet" href="./assets/css/ProgressBar.css" />
+  <link rel="stylesheet" href="./assets/css/ex1.css" />
+  <link rel="stylesheet" href="./assets/css/ex2.css" />
+
+  <!-- Scripts -->
+  <script src="./assets/js/sidebar.js" defer></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Sidebar y Audio dinámicos -->
+  <div id="sidebarContainer"></div>
+  <div id="audioContainer"></div>
+
+  <!-- Logo inferior -->
+  <div class="logo-container">
+    <img src="../assets/images/logo_color.png" alt="Logo AngloAmerican" class="logo" />
+  </div>
+
+  <!-- Título principal -->
+  <header>
+    <h1 class="titulo-epp"><span class="gradient-text2">Inspección Pre Operativa</span></h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Sección I3.5: Inspección nivel piso -->
+    <section class="inspeccion-nivel">
+      <h2 class="inspeccion-titulo">Inspección nivel piso</h2>
+      <label class="inspeccion-check">
+        
+        La inspección deberá ser objetiva tomando como inicio el punto de acceso a la cabina del operador y en sentido horario deberá realizar la inspección.
+      </label>
+      <div class="inspeccion-contenido">
+        <img src="../assets/images/82.png" alt="Inspección nivel piso" class="inspeccion-imagen" />
+          <div class="inspeccion-lista">
+            <p class="paso paso-a"><strong>A.</strong> Inspección lado izquierdo.</p>
+            <p class="paso paso-b"><strong>B.</strong> Inspección frontal.</p>
+            <p class="paso paso-c"><strong>C.</strong> Inspección lado derecho.</p>
+            <p class="paso paso-d"><strong>D.</strong> Inspección posterior</p>
+          </div>
+
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón de continuar -->
+  <button class="start-button" onclick="goToNextPage()">Continuar <span class="arrow">❯</span></button>
+
+  <!-- Scripts funcionales -->
+  <script src="./assets/js/SCORM.js"></script>
+  <script src="./assets/js/M1_pagina2.js" defer></script>
+  <script>
+    // Navegación
+    function goHome() { window.location.href = 'ex.html'; }
+    function backPage() { window.location.href = 'ex1.html'; }
+    function goToNextPage() { window.location.href = 'ex3.html'; }
+
+    // SCORM progreso
+    ScormManager.init();
+    ScormManager.guardarProgreso("ex1.html");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const progreso = ScormManager.cargarProgreso();
+      const porcentaje = progreso.score ? parseInt(progreso.score) : 0;
+      document.getElementById("progreso-barra").style.width = porcentaje + "%";
+      document.getElementById("progreso-texto").textContent = porcentaje + "%";
+    });
+
+    // Carga dinámica de componentes
+    fetch('./assets/componentes/sidebar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('sidebarContainer').innerHTML = html);
+
+    fetch('./assets/componentes/audioPlayer.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('audioContainer').innerHTML = html);
+  </script>
+
+</body>
+</html>
