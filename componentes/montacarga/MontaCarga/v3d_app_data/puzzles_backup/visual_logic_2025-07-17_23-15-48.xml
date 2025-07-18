@@ -1,0 +1,323 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <tab name="Init" type="InitTab" active="false" scrollx="1512" scrolly="560.6666564941406" scale="0.9"></tab>
+  <tab name="INICO" type="CommonTab" active="false" scrollx="2062.8568062283384" scrolly="108.65092679105209" scale="0.5942658911396201">
+    <block xmlns="https://developers.google.com/blockly/xml" type="connectorSlot" id="r`E2f?vEacQrRH5.)aju" x="-1578" y="-57">
+      <statement name="DO">
+        <block type="lookAt" id="#Ee!DXOzc#Q]3%iIrXS3">
+          <value name="LOOKAT">
+            <shadow type="objectList" id="yNQLa=)zVMYj%;8B0%jX">
+              <field name="FIELDNAME">6. Asiento del operador</field>
+            </shadow>
+          </value>
+          <value name="DURATION">
+            <shadow type="math_number" id="V/BgD*CH~^e~6]qT[N:G">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <next>
+            <block type="execScript" id="0:y_@/7q^|3UqZ:4k?yC">
+              <value name="TEXT">
+                <shadow type="textMultiline" id="2PlF)Imj#AS,3)8Ldq+A">
+                  <field name="HIGHLIGHT_MODE">javascript</field>
+                  <field name="TEXT" editor-height="25" editor-width="520">app.controls.addEventListener("change", function () {&amp;#10;    var raycaster = new v3d.Raycaster();&amp;#10;    var downVector = new v3d.Vector3(0, -1, 0);&amp;#10;    var terreno = app.scene.getObjectByName("Suelo");&amp;#10;&amp;#10;    if (!terreno) return;&amp;#10;&amp;#10;    raycaster.set(app.camera.position, downVector);&amp;#10;    var intersects = raycaster.intersectObject(terreno, true);&amp;#10;&amp;#10;    if (intersects.length &gt; 0) {&amp;#10;        var groundY = intersects[0].point.y + 1;&amp;#10;        if (app.camera.position.y &lt; groundY) {&amp;#10;&amp;#10;            app.camera.position.y = v3d.MathUtils.lerp(app.camera.position.y, groundY, 0.3);&amp;#10;            app.camera.updateMatrixWorld();&amp;#10;        }&amp;#10;    } else {&amp;#10;        var newHeight = app.camera.position.y + 2;&amp;#10;        app.camera.position.y = v3d.MathUtils.lerp(app.camera.position.y, newHeight, 0.3);&amp;#10;        app.camera.updateMatrixWorld();&amp;#10;    }&amp;#10;&amp;#10;});</field>
+                </shadow>
+              </value>
+              <next>
+                <block type="execScript" id="7Dw5[R]J(9HvOZ}rWf@{">
+                  <value name="TEXT">
+                    <shadow type="textMultiline" id="1Lr%i2)Ig/bw$iPE|m%e">
+                      <field name="HIGHLIGHT_MODE">javascript</field>
+                      <field name="TEXT" editor-height="4" editor-width="520">app.controls.minDistance = 1;   // Zoom mínimo&amp;#10;app.controls.maxDistance = 20;  // Zoom máximo&amp;#10;</field>
+                    </shadow>
+                  </value>
+                  <next>
+                    <block type="execScript" id="EC(~t4MN$qm7sZpI6N]T">
+                      <value name="TEXT">
+                        <shadow type="textMultiline" id="yv3}Joil0]fu$h*.1dHa">
+                          <field name="HIGHLIGHT_MODE">javascript</field>
+                          <field name="TEXT" editor-height="5" editor-width="520">app.camera.far = 5000;&amp;#10;app.camera.updateProjectionMatrix();&amp;#10;</field>
+                        </shadow>
+                      </value>
+                      <next>
+                        <block type="execScript" id="SV=kM:]x$XsO)h4obki{">
+                          <value name="TEXT">
+                            <shadow type="textMultiline" id="A.)8sRP!?3=?Ua/OkQ_B">
+                              <field name="HIGHLIGHT_MODE">javascript</field>
+                              <field name="TEXT" editor-height="2" editor-width="520">app.controls.enablePan = false;&amp;#10;</field>
+                            </shadow>
+                          </value>
+                          <next>
+                            <block type="execScript" id="~]b#{rv]p{+vlia:B8?I">
+                              <value name="TEXT">
+                                <shadow type="textMultiline" id="os=Myuv5?W5*IwA%b/(Y">
+                                  <field name="HIGHLIGHT_MODE">javascript</field>
+                                  <field name="TEXT" editor-height="8" editor-width="520">app.scene.traverse(function(obj) {&amp;#10;  if (obj.isMesh) {&amp;#10;    obj.frustumCulled = false; // así siempre se renderiza, y la niebla no se corta bruscamente&amp;#10;  }&amp;#10;});&amp;#10;</field>
+                                </shadow>
+                              </value>
+                              <next>
+                                <block type="addFog" id="zZrf`*.t7+{et9ikwDc/">
+                                  <value name="R">
+                                    <shadow type="math_number" id="X6fxANkeYoz3S9]jB`3G">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="G">
+                                    <shadow type="math_number" id="*G:a@-Hkn{Ds%YzLo0;R">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="B">
+                                    <shadow type="math_number" id="u3uwa{zKK)4`~oZkS8qL">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="DENSITY">
+                                    <shadow type="math_number" id="V3)oS;4E.w6BiE3ms,XO">
+                                      <field name="NUM">0.005</field>
+                                    </shadow>
+                                  </value>
+                                </block>
+                              </next>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+  </tab>
+  <tab name="Carrusel" type="CommonTab" active="true" scrollx="1650.5214595119814" scrolly="782.7958259531192" scale="1">
+    <variables xmlns="https://developers.google.com/blockly/xml">
+      <variable id="|9+.kYjJ([|-[t#e9(jj">carru</variable>
+    </variables>
+    <block xmlns="https://developers.google.com/blockly/xml" type="connectorSlot" id="P#TuvT+O3y!1kLzar@ro" x="-1839" y="-902">
+      <statement name="DO">
+        <block type="setTimeout" id="%x;awLfrzc1[$y@!4AjK">
+          <value name="VALUE">
+            <shadow type="math_number" id="]}$dGH}|B^c0+Zd8_Az7">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <statement name="DO">
+            <block type="execScript" id="jPks$~iHQ]F,8vrQ)bIs">
+              <value name="TEXT">
+                <shadow type="textMultiline" id="LjGB86wd?z*Vnv1JTK$G">
+                  <field name="HIGHLIGHT_MODE">javascript</field>
+                  <field name="TEXT" editor-height="10" editor-width="520">const script = document.createElement('script');&amp;#10;script.src = './js/carrusel.js';&amp;#10;script.onload = () =&gt; {&amp;#10;  console.log('✅ carrusel.js cargado correctamente.');&amp;#10;};&amp;#10;script.onerror = () =&gt; {&amp;#10;  console.error('❌ Error al cargar carrusel.js');&amp;#10;};&amp;#10;document.head.appendChild(script);&amp;#10;</field>
+                </shadow>
+              </value>
+            </block>
+          </statement>
+          <next>
+            <block type="math_change" id="Sjg|(xN%OOkw8oeny/gq">
+              <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+              <value name="DELTA">
+                <shadow type="math_number" id="wx3@2AdLo{T`!y-Qg$/;">
+                  <field name="NUM">0</field>
+                </shadow>
+              </value>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+    <block xmlns="https://developers.google.com/blockly/xml" type="procedures_defnoreturn" id="/cU`EEFkv.4N2wc!h[JY" x="-1445" y="-592">
+      <field name="NAME">3d</field>
+      <comment pinned="false" h="80" w="160">Describe this function...</comment>
+      <statement name="STACK">
+        <block type="controls_if" id="WIUg#~:`Ij08]n499J-Y">
+          <mutation elseif="3"></mutation>
+          <value name="IF0">
+            <block type="logic_compare" id="V$,?XGb#BHA;E]NAwwm+">
+              <field name="OP">EQ</field>
+              <value name="A">
+                <block type="variables_get" id="GSt,[929dgnnguLjQV9+">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <block type="math_number" id=",_kctuKsuI!KU+%+v|Fi">
+                  <field name="NUM">0</field>
+                </block>
+              </value>
+            </block>
+          </value>
+          <value name="IF1">
+            <block type="logic_compare" id=":Ybtad{:-%]z0UP{,-j[">
+              <field name="OP">EQ</field>
+              <value name="A">
+                <block type="variables_get" id="Euw9f;PSp;j#[w)_a{0^">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <block type="math_number" id="C`jnXMk86PT@eukF$!dQ">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+            </block>
+          </value>
+          <statement name="DO1">
+            <block type="addAnnotation" id="iIc?X|GMI6.Qe!xGY0XO">
+              <mutation xmlns="http://www.w3.org/1999/xhtml" usenameslot="false"></mutation>
+              <value name="ANNOTATION">
+                <shadow type="text" id="jKmhBOK#ffu7U_`#f!0d">
+                  <field name="TEXT">1</field>
+                </shadow>
+              </value>
+              <value name="TARGET">
+                <shadow type="objectList" id="6X8jq;MX9=Ps)S9b0VwN">
+                  <field name="FIELDNAME">MÁSTIL DE MONTACARGAS</field>
+                </shadow>
+              </value>
+              <value name="CONTENTS">
+                <shadow type="text" id=":yn@$k|*:DvEI7B5b,%5">
+                  <field name="TEXT">Point of interest #1</field>
+                </shadow>
+              </value>
+              <value name="ID">
+                <shadow type="text" id="kgN@_JM7h=:`k|P3A=MQ">
+                  <field name="TEXT">poi1</field>
+                </shadow>
+              </value>
+              <next>
+                <block type="lookAt" id="_yS`Xc8!5SG3}/[5MyQ6">
+                  <value name="LOOKAT">
+                    <shadow type="objectList" id="`e.=9zAvMG08s[pQqL#:">
+                      <field name="FIELDNAME">&lt;none&gt;</field>
+                    </shadow>
+                    <block type="objectList" id="/TlJJa@8sK{Owgt`s;ZM">
+                      <field name="FIELDNAME">16. Mástil</field>
+                    </block>
+                  </value>
+                  <value name="DURATION">
+                    <shadow type="math_number" id="-ev9/j~CG:aeZD5NK4*^">
+                      <field name="NUM">1</field>
+                    </shadow>
+                  </value>
+                  <next>
+                    <block type="outline" id="A_X|Z2C@x=Q[4P.cBeEi">
+                      <field name="DO_WHAT">ENABLE</field>
+                      <value name="TARGET">
+                        <shadow type="objectList" id="h0[(bR1DwHz~wvX1eVve">
+                          <field name="FIELDNAME">16. Mástil</field>
+                        </shadow>
+                      </value>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </statement>
+          <value name="IF2">
+            <block type="logic_compare" id="z^@p).k5_}//I,6a;u_:">
+              <field name="OP">EQ</field>
+              <value name="A">
+                <block type="variables_get" id="_d~a`C)fa#-D^D$*qLO}">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <block type="math_number" id="mXz5S=5-J|hktZYY-r)J">
+                  <field name="NUM">2</field>
+                </block>
+              </value>
+            </block>
+          </value>
+          <value name="IF3">
+            <block type="logic_compare" id="b)mD_3BrH^.^.{WXn6z7">
+              <field name="OP">EQ</field>
+              <value name="A">
+                <block type="variables_get" id="/I+JQX$!dk8~U$|74XiK">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <block type="math_number" id="`XE1rH!uNyM}RuAZ$T/|">
+                  <field name="NUM">3</field>
+                </block>
+              </value>
+            </block>
+          </value>
+        </block>
+      </statement>
+    </block>
+    <block xmlns="https://developers.google.com/blockly/xml" type="procedures_defnoreturn" id="C6z3^qbR5QkugtA4mOeh" x="-1843" y="-523">
+      <field name="NAME">izquierda</field>
+      <comment pinned="false" h="80" w="160">Describe this function...</comment>
+      <statement name="STACK">
+        <block type="math_change" id=")xaXQ(fYJeAL3.1jc(A=">
+          <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+          <value name="DELTA">
+            <shadow type="math_number" id=")RY$Sm%jt__ISlddx50U">
+              <field name="NUM">1</field>
+            </shadow>
+            <block type="math_arithmetic" id="8/88+jOqH%D3WycQV2#^">
+              <field name="OP">MINUS</field>
+              <value name="A">
+                <shadow type="math_number" id="YXe%0s@JpeJ13T`IHsx7">
+                  <field name="NUM">2</field>
+                </shadow>
+                <block type="variables_get" id="5}N%UM-JF|r0qT.Y0B8R">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <shadow type="math_number" id="gW?bk1OEZluC1h$5dzB}">
+                  <field name="NUM">1</field>
+                </shadow>
+              </value>
+            </block>
+          </value>
+          <next>
+            <block type="procedures_callnoreturn" id="@R%),@=ydcpg^E%z{^wq">
+              <mutation name="3d"></mutation>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+    <block xmlns="https://developers.google.com/blockly/xml" type="procedures_defnoreturn" id="zNI~,nP]*:I93*C1i?jm" x="-1839" y="-391">
+      <field name="NAME">derecha</field>
+      <comment pinned="false" h="80" w="160">Describe this function...</comment>
+      <statement name="STACK">
+        <block type="math_change" id="Y(FchMfl3%-@E,GlVzAk">
+          <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+          <value name="DELTA">
+            <shadow type="math_number" id=")RY$Sm%jt__ISlddx50U">
+              <field name="NUM">1</field>
+            </shadow>
+            <block type="math_arithmetic" id="S[Vz8tOM,9BO/;ijtTS#">
+              <field name="OP">ADD</field>
+              <value name="A">
+                <shadow type="math_number" id="YXe%0s@JpeJ13T`IHsx7">
+                  <field name="NUM">2</field>
+                </shadow>
+                <block type="variables_get" id="GThkk7Z`!h;:glR*m+{#">
+                  <field name="VAR" id="|9+.kYjJ([|-[t#e9(jj">carru</field>
+                </block>
+              </value>
+              <value name="B">
+                <shadow type="math_number" id="ZgPCGq_H,L[BmQ*aJXt7">
+                  <field name="NUM">1</field>
+                </shadow>
+              </value>
+            </block>
+          </value>
+          <next>
+            <block type="procedures_callnoreturn" id="+B0pH:qjn2);ehdX$Y?2">
+              <mutation name="3d"></mutation>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+  </tab>
+  <editorsettings viewport-x="1047" viewport-y="37" viewport-w="710" viewport-h="398.5" viewport-hidden="true" toolbox-library-mode="false" toolbox-minimized-mode="false"></editorsettings>
+</xml>

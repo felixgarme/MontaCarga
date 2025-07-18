@@ -1,0 +1,119 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <tab name="Init" type="InitTab" active="false" scrollx="443.111083984375" scrolly="-0.4444580078125" scale="0.9"></tab>
+  <tab name="INICO" type="CommonTab" active="false" scrollx="1380.6345772244322" scrolly="108.65092679105209" scale="0.5942658911396201">
+    <block xmlns="https://developers.google.com/blockly/xml" type="connectorSlot" id="r`E2f?vEacQrRH5.)aju" x="-1578" y="-57">
+      <statement name="DO">
+        <block type="lookAt" id="#Ee!DXOzc#Q]3%iIrXS3">
+          <value name="LOOKAT">
+            <shadow type="objectList" id="yNQLa=)zVMYj%;8B0%jX">
+              <field name="FIELDNAME">6. Asiento del operador</field>
+            </shadow>
+          </value>
+          <value name="DURATION">
+            <shadow type="math_number" id="V/BgD*CH~^e~6]qT[N:G">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <next>
+            <block type="execScript" id="0:y_@/7q^|3UqZ:4k?yC">
+              <value name="TEXT">
+                <shadow type="textMultiline" id="2PlF)Imj#AS,3)8Ldq+A">
+                  <field name="HIGHLIGHT_MODE">javascript</field>
+                  <field name="TEXT" editor-height="25" editor-width="520">app.controls.addEventListener("change", function () {&amp;#10;    var raycaster = new v3d.Raycaster();&amp;#10;    var downVector = new v3d.Vector3(0, -1, 0);&amp;#10;    var terreno = app.scene.getObjectByName("Suelo");&amp;#10;&amp;#10;    if (!terreno) return;&amp;#10;&amp;#10;    raycaster.set(app.camera.position, downVector);&amp;#10;    var intersects = raycaster.intersectObject(terreno, true);&amp;#10;&amp;#10;    if (intersects.length &gt; 0) {&amp;#10;        var groundY = intersects[0].point.y + 1;&amp;#10;        if (app.camera.position.y &lt; groundY) {&amp;#10;&amp;#10;            app.camera.position.y = v3d.MathUtils.lerp(app.camera.position.y, groundY, 0.3);&amp;#10;            app.camera.updateMatrixWorld();&amp;#10;        }&amp;#10;    } else {&amp;#10;        var newHeight = app.camera.position.y + 2;&amp;#10;        app.camera.position.y = v3d.MathUtils.lerp(app.camera.position.y, newHeight, 0.3);&amp;#10;        app.camera.updateMatrixWorld();&amp;#10;    }&amp;#10;&amp;#10;});</field>
+                </shadow>
+              </value>
+              <next>
+                <block type="execScript" id="7Dw5[R]J(9HvOZ}rWf@{">
+                  <value name="TEXT">
+                    <shadow type="textMultiline" id="1Lr%i2)Ig/bw$iPE|m%e">
+                      <field name="HIGHLIGHT_MODE">javascript</field>
+                      <field name="TEXT" editor-height="4" editor-width="520">app.controls.minDistance = 1;   // Zoom mínimo&amp;#10;app.controls.maxDistance = 20;  // Zoom máximo&amp;#10;</field>
+                    </shadow>
+                  </value>
+                  <next>
+                    <block type="execScript" id="EC(~t4MN$qm7sZpI6N]T">
+                      <value name="TEXT">
+                        <shadow type="textMultiline" id="yv3}Joil0]fu$h*.1dHa">
+                          <field name="HIGHLIGHT_MODE">javascript</field>
+                          <field name="TEXT" editor-height="5" editor-width="520">app.camera.far = 5000;&amp;#10;app.camera.updateProjectionMatrix();&amp;#10;</field>
+                        </shadow>
+                      </value>
+                      <next>
+                        <block type="execScript" id="SV=kM:]x$XsO)h4obki{">
+                          <value name="TEXT">
+                            <shadow type="textMultiline" id="A.)8sRP!?3=?Ua/OkQ_B">
+                              <field name="HIGHLIGHT_MODE">javascript</field>
+                              <field name="TEXT" editor-height="2" editor-width="520">app.controls.enablePan = false;&amp;#10;</field>
+                            </shadow>
+                          </value>
+                          <next>
+                            <block type="execScript" id="~]b#{rv]p{+vlia:B8?I">
+                              <value name="TEXT">
+                                <shadow type="textMultiline" id="os=Myuv5?W5*IwA%b/(Y">
+                                  <field name="HIGHLIGHT_MODE">javascript</field>
+                                  <field name="TEXT" editor-height="8" editor-width="520">app.scene.traverse(function(obj) {&amp;#10;  if (obj.isMesh) {&amp;#10;    obj.frustumCulled = false; // así siempre se renderiza, y la niebla no se corta bruscamente&amp;#10;  }&amp;#10;});&amp;#10;</field>
+                                </shadow>
+                              </value>
+                              <next>
+                                <block type="addFog" id="zZrf`*.t7+{et9ikwDc/">
+                                  <value name="R">
+                                    <shadow type="math_number" id="X6fxANkeYoz3S9]jB`3G">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="G">
+                                    <shadow type="math_number" id="*G:a@-Hkn{Ds%YzLo0;R">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="B">
+                                    <shadow type="math_number" id="u3uwa{zKK)4`~oZkS8qL">
+                                      <field name="NUM">0.5</field>
+                                    </shadow>
+                                  </value>
+                                  <value name="DENSITY">
+                                    <shadow type="math_number" id="V3)oS;4E.w6BiE3ms,XO">
+                                      <field name="NUM">0.005</field>
+                                    </shadow>
+                                  </value>
+                                </block>
+                              </next>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+  </tab>
+  <tab name="Carrusel" type="CommonTab" active="true" scrollx="1818.3804083930117" scrolly="971.6373450510783" scale="1">
+    <block xmlns="https://developers.google.com/blockly/xml" type="connectorSlot" id="P#TuvT+O3y!1kLzar@ro" x="-1547" y="-595">
+      <statement name="DO">
+        <block type="setTimeout" id="%x;awLfrzc1[$y@!4AjK">
+          <value name="VALUE">
+            <shadow type="math_number" id="]}$dGH}|B^c0+Zd8_Az7">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <statement name="DO">
+            <block type="execScript" id="jPks$~iHQ]F,8vrQ)bIs">
+              <value name="TEXT">
+                <shadow type="textMultiline" id="LjGB86wd?z*Vnv1JTK$G">
+                  <field name="HIGHLIGHT_MODE">javascript</field>
+                  <field name="TEXT" editor-height="12" editor-width="520">const script = document.createElement('script');&amp;#10;script.src = './carrusel.js';&amp;#10;script.onload = () =&gt; {&amp;#10;  console.log('✅ carrusel.js cargado correctamente.');&amp;#10;};&amp;#10;script.onerror = () =&gt; {&amp;#10;  console.error('❌ Error al cargar carrusel.js');&amp;#10;};&amp;#10;document.head.appendChild(script);&amp;#10;</field>
+                </shadow>
+              </value>
+            </block>
+          </statement>
+        </block>
+      </statement>
+    </block>
+  </tab>
+  <editorsettings viewport-x="1047" viewport-y="37" viewport-w="710" viewport-h="398.5" viewport-hidden="true" toolbox-library-mode="false" toolbox-minimized-mode="false"></editorsettings>
+</xml>
