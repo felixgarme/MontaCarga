@@ -79,11 +79,11 @@
     });
 
     // Carga dinámica de componentes
-    fetch('./assets/componentes/sidebar.html')
+    fetch('./componentes/sidebar.html')
       .then(res => res.text())
       .then(html => document.getElementById('sidebarContainer').innerHTML = html);
 
-    fetch('./assets/componentes/audioPlayer.html')
+    fetch('./componentes/audioPlayer.html')
       .then(res => res.text())
       .then(html => document.getElementById('audioContainer').innerHTML = html);
   </script>

@@ -116,14 +116,14 @@
   <!-- Carga dinámica de componentes -->
   <script>
     // Sidebar
-    fetch('./assets/componentes/sidebar.html')
+    fetch('./componentes/sidebar.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('sidebarContainer').innerHTML = html;
       });
 
     // Reproductor de audio
-    fetch('./assets/componentes/audioPlayer.html')
+    fetch('./componentes/audioPlayer.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('audioContainer').innerHTML = html;

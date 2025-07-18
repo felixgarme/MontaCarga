@@ -60,7 +60,7 @@
       window.location.href = 'ex3.html';
     }
     function goToNextPage() {
-      window.location.href = 'ex4.html';
+      window.location.href = 'ex5.html';
     }
 
     // SCORM: iniciar y cargar progreso
@@ -76,20 +76,20 @@
   </script>
   <script>
     // Sidebar
-    fetch('./assets/componentes/sidebar.html')
+    fetch('./componentes/sidebar.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('sidebarContainer').innerHTML = html;
       });
 
     // Reproductor de audio
-    fetch('./assets/componentes/audioPlayer.html')
+    fetch('./componentes/audioPlayer.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('audioContainer').innerHTML = html;
       });
     // Reproductor card
-    fetch('./assets/componentes/ex4inf.html')
+    fetch('./componentes/ex4inf.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('inf').innerHTML = html;
